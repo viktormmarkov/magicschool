@@ -61,12 +61,12 @@ function Send_form(type) {
 </script>
 
 <script type="text/javascript">
-    $("#carousel").Cloud9Carousel( {
-  autoPlay: 0,
-  bringToFront: true,
-  speed: 2,
-  yRadius: 0,
-  itemClass: 'character-card'
-} );
+    $("#carousel").Cloud9Carousel({
+        autoPlay: 0,
+        bringToFront: true,
+        speed: 2,
+        yRadius: 0,
+        itemClass: 'character-card'
+    });
 </script>
 @endsection
