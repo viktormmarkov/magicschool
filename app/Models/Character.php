@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Skill;
 
 class Character extends Model
 {   
@@ -31,4 +32,8 @@ class Character extends Model
     protected $hidden = [
         'remember_token',
     ];
+
+    public function skills() {
+        return $this->belongsToMany('App\Models\Skill','characters_skills','char_id','skill_id');
+    }
 }

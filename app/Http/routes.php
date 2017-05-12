@@ -30,10 +30,17 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => ['student']], function () {
 
 	Route::post('/set-type','StudentController@setType');
+	Route::get('/user_info/{user_id?}','StudentController@getInfo');
+	Route::get('/character_skills','StudentController@getCharacterSkills');
+	Route::get('/get_skill/{skill_id}','StudentController@addSkillToUser');
+	Route::get('/activate_code/{code_id}','StudentController@addCodeToUser');
+	Route::get('get_answers/{question_id}','StudentController@getQuestionAnswers');
+	Route::get('send_answer/{answer_id}/{question_id}','StudentController@sendQuestionAnswer');
 }); 
 
 Route::group(['middleware' => ['teacher']], function () {
 
+	Route::post('/use_skill/{studentId}/{skillId}','TeacherController@userSkill');
 
 });  
 

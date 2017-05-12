@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username','password','level','name','family','Access_level','Class_in_school','Character_type'
+        'username','password','level','name','family','Access_level','Class_in_school','Character_type','xp','ap','sp'
     ];
 
     /*
@@ -41,5 +41,9 @@ class User extends Authenticatable
     public function isStudent()
     {
         return $this->Access_level == 3; // this looks for an admin column in your users table
+    }
+
+    public function skills() {
+        return $this->belongsToMany('App\Models\Skill','users_skills','user_id','skill_id');
     }
 }
