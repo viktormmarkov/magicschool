@@ -1,0 +1,68 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block pageHeading %} {{ pageHeading }}{% endblock pageHeading %}
+{% block pageHeadingDescription %} {{ pageDescription }}{% endblock pageHeadingDescription %}
+{% block title %} {{ pageHeading }} -> {{ pageDescription }} {% endblock title %}
+{% block breadcrumb %} {{ pageHeading|capitalize }} {{ pageDescription|lower }} {% endblock breadcrumb %}
+
+{% block body %}
+    {% for flashMessage in app.session.flashbag.get('message') %}
+        <div class="flash-notice">
+            <div class="callout callout-success">
+                <p> {{ flashMessage }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.url) }}
+        {{ form_widget(form.url, {'attr' : {'class' : 'form-control'}}) }}
+        {{ form_errors(form.url) }}
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.imageFile) }}
+        {{ form_widget(form.imageFile, {'attr' : {'class' : 'form-control'}}) }}
+        {{ form_errors(form.imageFile) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.save , {'attr': {'class': 'btn btn-default' }}) }}
+    </div>
+
+    {{ form_end(form) }}
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% trans %} admin.dashboard.carousel.list {% endtrans %}</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tbody><tr>
+                    <th width="5%">#</th>
+                    <th width="55%">{% trans %} admin.dashboard.carousel.title {% endtrans %}</th>
+                    <th width="30%">{% trans %} admin.dashboard.carousel.img {% endtrans %}</th>
+                    <th width="10%">{% trans %} form.action {% endtrans %}</th>
+                </tr>
+                {% for entity in data %}
+                    <tr>
+                        <td>{{ entity.id }}</td>
+                        <td>{{ entity.name }}</td>
+                        <td><img src="/assets/images/banners/{{ entity.imageName }}" alt="{{ entity.name }}" class="img-thumbnail"/></td>
+                        <td>
+                            <a class="btn btn-primary btn-delete-item" href="{{ path('app_admin_banner_delete', {id : entity.id}) }}">{% trans %}form.delete{% endtrans %}</a>
+                            <a class="btn btn-primary btn-delete-item" href="{{ path('app_admin_banner_edit', {id : entity.id}) }}">{% trans %}form.edit{% endtrans %}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody></table>
+        </div><!-- /.box-body -->
+    </div>
+{% endblock body %}

@@ -1,0 +1,58 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block pageHeading %} {{ pageHeading }}{% endblock pageHeading %}
+{% block pageHeadingDescription %} {{ pageDescription }}{% endblock pageHeadingDescription %}
+{% block title %} {{ pageHeading }} -> {{ pageDescription }} {% endblock title %}
+{% block breadcrumb %} {{ pageHeading|capitalize }} {{ pageDescription|lower }} {% endblock breadcrumb %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, {'attr' : {'class' : 'form-control'}}) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.imageFile) }}
+        {{ form_widget(form.imageFile, {'attr' : {'class' : 'form-control'}}) }}
+        {{ form_errors(form.imageFile) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.save , {'attr': {'class': 'btn btn-default' }}) }}
+    </div>
+
+    {{ form_end(form) }}
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% trans %} admin.dashboard.promotions.list {% endtrans %}</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tbody><tr>
+                    <th width="50%">{% trans %} admin.dashboard.promotions.label {% endtrans %}</th>
+                    <th width="30%">{% trans %} admin.dashboard.promotions.img {% endtrans %}</th>
+                    <th width="10%">Изтрий</th>
+                    <th width="10%">Редактирай</th>
+                </tr>
+                {% for entity in data %}
+                    <tr>
+                        <td>{{ entity.title }}</td>
+                        <td>
+                            <a href="{{ path('app_admin_promotions_add', {slug : entity.getSlug}) }}">
+                            <img src="/assets/images/promotions/{{ entity.imageName }}" width="200" height="100">
+                       </td>
+                        <td><a href="{{ path('app_admin_promotion_delete', {id : entity.id}) }}" class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td><a href="{{ path('app_admin_promotion_edit', {id : entity.id}) }}" class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    </tr>
+                {% endfor %}
+
+                </tbody></table>
+        </div><!-- /.box-body -->
+    </div>
+
+{% endblock body %}

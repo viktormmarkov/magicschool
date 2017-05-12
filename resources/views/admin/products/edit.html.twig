@@ -1,0 +1,87 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block pageHeading %} {{ pageHeading }}{% endblock pageHeading %}
+{% block pageHeadingDescription %} {{ pageDescription }}{% endblock pageHeadingDescription %}
+{% block title %} {{ pageHeading }} -> {{ pageDescription }} {% endblock title %}
+{% block breadcrumb %} {{ pageHeading|capitalize }} {{ pageDescription|lower }} {% endblock breadcrumb %}
+
+{% block body %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            <div class="callout callout-success">
+                <p> {{ flashMessage }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    {% form_theme form
+            'AppBundle:Admin/products:jquery.collection.html.twig'
+            'AppBundle:Admin/products:options-theme.html.twig'
+    %}
+
+    {{ form_start(form) }}
+
+    {{ form_errors(form.title) }}
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+
+    {{ form_errors(form.subcategory) }}
+    {{ form_label(form.subcategory) }}
+    {{ form_widget(form.subcategory) }}
+
+    {% for image in form.images %}
+        {{ form_errors(image) }}
+        {{ form_label(image) }}
+        {{ form_widget(image) }}
+        <img src="{{ asset('images/products/' ~  image.vars.data.getImageName) }}" width="200" height="200" />
+        <a href="{{ path('app_admin_product_image_delete', {id : image.vars.data.getId}) }}" class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+    {% endfor %}
+
+    <div id="appbundle_admin_product_images" class="my-selector" data-prototype="&lt;div class=&quot;form-group&quot;&gt;&lt;label class=&quot;control-label required&quot;&gt;Снимки&lt;/label&gt;&lt;div id=&quot;appbundle_admin_product_images___name__&quot; novalidate=&quot;novalidate&quot;&gt;&lt;div class=&quot;form-group&quot;&gt;&lt;label class=&quot;control-label required&quot; for=&quot;appbundle_admin_product_images___name___imageFile&quot;&gt;Image file&lt;/label&gt;&lt;input type=&quot;file&quot; id=&quot;appbundle_admin_product_images___name___imageFile&quot; name=&quot;appbundle_admin_product[images][__name__][imageFile]&quot; required=&quot;required&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" data-prototype-name="__name__" data-allow-add="1" data-allow-delete="1" data-name-prefix="appbundle_admin_product[images]"></div>
+
+    {{ form_errors(form.description) }}
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description) }}
+
+    {{ form_errors(form.sizes) }}
+    {{ form_label(form.sizes) }}
+    {{ form_widget(form.sizes) }}
+
+    {{ form_errors(form.price) }}
+    {{ form_label(form.price) }}
+    {{ form_widget(form.price) }}
+
+    {{ form_errors(form.discount) }}
+    {{ form_label(form.discount) }}
+    {{ form_widget(form.discount) }}
+
+    {{ form_errors(form.leasing) }}
+    {{ form_label(form.leasing) }}
+    {{ form_widget(form.leasing) }}
+
+    {{ form_errors(form.sale) }}
+    {{ form_label(form.sale) }}
+    {{ form_widget(form.sale) }}
+
+    {{ form_errors(form.promotion) }}
+    {{ form_label(form.promotion) }}
+    {{ form_widget(form.promotion) }}
+
+    {{ form_errors(form.related) }}
+    {{ form_label(form.related) }}
+    {{ form_widget(form.related) }}
+
+    {% for image in watermark %}
+        <div class="radio">
+            <label><input type="radio" name="watermark" value="{{ image.getImageName() }}">
+                <img src="{{ asset('assets/images/watermark/' ~ image.getImageName()) }}" alt=""  width="50" height="50"/>
+            </label>
+        </div>
+    {% endfor %}
+
+    <input type="submit" value="Запиши">
+    {{ form_end(form) }}
+
+{% endblock body %}

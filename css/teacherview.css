@@ -1,0 +1,104 @@
+div.skill-preview {
+	border-radius: 10px;
+	padding: 10px;
+	padding-left: 20px;
+	background-color: #000;
+}
+
+div.skill-preview h2 {
+	color: orange;
+	font-family: "Verdana", Geneva, sans-serif;
+}
+
+div.skill-preview p {
+	color: white;
+	font-family: "Verdana", Geneva, sans-serif;
+}
+
+/*Probably not needed by now*/
+
+.students-header {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 20px;
+	color: #FFF;
+	padding: 15px;
+	padding-left: 15px;
+	padding-right: 25px;
+	background-color: #016D9C;
+	border-radius: 5px;
+}
+
+div.content {
+	width:100%;
+	background-color: #F2F2F2;
+	font-family: "Verdana", Geneva, sans-serif;
+	font-size: 16px;
+	padding: 0px;
+	color: #686868;
+	display: inline-block;
+}
+
+div.content div {
+	max-height: 100%;
+}
+
+div.row-0 {
+	background-color: #F2F2F2;
+	padding: 5px;
+	height:56px;
+	width:100%;
+}
+
+div.row-1 {
+	background-color: #FAFAFA;
+	padding: 5px;
+	height:56px;
+	width:100%;
+}
+
+div.row-0 div,
+div.row-1 div {
+	display:inline-block;
+	
+}
+
+/*div.row-1 div {
+	display:inline-block;
+}*/
+
+div.name {
+	min-width: 25%;
+	
+	font-size: 24px;
+	padding-left: 20px;
+
+}
+
+div.character-info {
+	min-width: 15%;
+	font-size: 24px;
+}
+
+div.character-info p {
+	font-size: 14px;
+	margin-top: -5px;
+	padding: 5px;
+}
+
+div.spells {
+	min-width: 40%;
+	height: 100%;
+}
+
+div.spells img {
+	width: 50px;
+	height: 50px;
+	border: 2px solid green;
+	border-radius: 2px;
+}
+
+div.points {
+	min-width: 15%;
+	font-size: 20px;
+	vertical-align: center;
+}

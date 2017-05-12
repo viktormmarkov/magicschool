@@ -1,0 +1,251 @@
+.ui-dialog-titlebar-close {
+  visibility: hidden;
+}
+h1,h2,h3,h4,h5,h6{
+    color:#d89419;
+}
+body{
+    margin:0;
+    padding:0;
+    background-color:#000000 !important;
+    background:url(../img/background.jpg) top center no-repeat;
+    color: #fff;
+
+    font-family: Verdana;
+}
+#container{
+    top: 50%;
+    left: 0;
+    width: 100%;
+}
+#wrapper{
+    padding:30px;
+    margin-left:auto;
+    margin-right:auto;
+	height:532px;
+    width:832px;
+    background-color:#0c0909;
+    border: 4px solid #2c1c0e;
+    border-radius: 10px;
+}
+#wrapper-character{
+    padding:30px;
+    margin-left:auto;
+    margin-right:auto;
+    width:832px;
+    background-color:#0c0909;
+    border: 4px solid #2c1c0e;
+    border-radius: 10px;
+}
+.fixed-width {
+width: 300px !important;
+color:#686868 !important;
+}
+
+.centered {
+    margin: 0 auto; 
+}
+
+.btn-lg{
+	margin-top:6px;
+	
+}
+.table {
+color:	#686868;
+	
+}
+.characters {
+    display:table;
+    margin: 0 auto;
+    padding-top:30px;
+}
+
+.characters img{
+	margin: 5px;
+	border: 3px solid #2c1c0e;
+	border-radius: 10px;
+}
+
+.characters img:hover{
+    box-shadow: 0px 0px 20px rgba(251,247,193,0.4);
+}
+
+.characterTile{
+    float:left;
+    margin-right:30px;
+    height:350px;
+    width:230px;
+    background:#ff0000;
+    border: 4px solid #2c1c0e;
+    border-radius: 10px;
+}
+.characters .characterTile:last-child {
+    margin: 0;
+}
+.characterTile:hover{
+    box-shadow: 0px 0px 20px rgba(251,247,193,0.4);
+}
+
+.characterTile.warrior{
+    background:url("../../img/charactersprite.jpg") 0px -350px no-repeat;
+}
+
+.characterTile.spellcaster{
+    background:url("../../img/charactersprite.jpg") -235px -350px no-repeat;
+}
+
+.characterTile.ranger{
+    background:url("../../img/charactersprite.jpg") -470px -350px no-repeat;
+}
+
+.characterTile.warrior:hover{
+    background:url("../../img/charactersprite.jpg") 0px 0px no-repeat;
+}
+
+.characterTile.spellcaster:hover{
+    background:url("../../img/charactersprite.jpg") -235px 0px no-repeat;
+}
+
+.characterTile.ranger:hover{
+    background:url("../../img/charactersprite.jpg") -470px 0px no-repeat;
+}
+
+#skills{
+    position:relative;
+    width:300px;
+    height:550px;
+}
+.icon {
+    position:absolute;
+    width:54px;
+    height:54px;
+    top:29px;
+    left:29px;
+    border:2px solid #2c1c0e;
+    background-color: #d89419;
+}
+
+.students thead{
+    background-color: #006c9e;
+}
+
+.form-signin{
+    margin: 0 auto;
+}
+.students {
+    width: 97%;
+	margin-top: 10px;
+	margin-left:auto;
+	margin-right:auto;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+}
+.students th:first-child {
+    border-radius: 6px 0 0 0;
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+}
+
+.students th:last-child {
+    border-radius: 0 6px 0 0;
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+}
+.span_level {
+	font-size:11px;
+}
+.class-select {
+    -webkit-appearance:none;
+}
+.students tbody {
+    color: #6c6c6c;
+}
+.students tr{
+    padding:5px 0;
+    height:64px;
+}
+.character-info {
+    width:150px;
+    font-size: 18px;
+}
+.spells {
+    width:200px;
+    height:100%;
+    font-size: 18px;
+}
+.name {
+    width:200px;
+    font-size: 18px;
+    padding-left: 20px
+}
+.skillicon{
+    width:50px;
+    height:50px;
+    border: 2px solid gray;
+    border-radius: 3px;
+}
+.skillicon:hover{
+    border-radius: 3px;
+    box-shadow: 0px 0px 0px 3px rgba(150, 0, 0, 0.3);
+}
+.appoints{
+    font-size: 18px;
+    width:100px;
+}
+.odd{
+    background: #f2f2f2;
+}
+.even{
+    background: #f9f9f9;
+}
+.enter_code{
+	color:black !important;
+	height:24px !important;
+	background-color:#C3C3C2 !important;
+		
+	
+}
+.progress {
+	background-color:transparent !important;
+}
+
+.info, .success, .warning, .error, .validation {
+border: 1px solid;
+margin: 0px 340px;
+padding:15px 10px 15px 10px;
+background-repeat: no-repeat;
+background-position: 10px center;
+position:fixed;
+z-index:10000;
+}
+.success {
+color: #4F8A10;
+background-color: #DFF2BF;
+//background-image:url('success.png');
+}
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+//background-image: url('error.png');
+}
+.form_input{
+	height: 45px;
+	border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
+}
+.students .td {
+	display: -webkit-box;
+}
+.enable {
+	box-shadow:0px,0px,12px,#C00;
+}
+
+.question {
+    background: #e2e2e2;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.question:hover {
+    background: #66C2E0;
+}

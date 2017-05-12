@@ -1,0 +1,49 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block pageHeading %} {{ pageHeading }}{% endblock pageHeading %}
+{% block pageHeadingDescription %} {{ pageDescription }}{% endblock pageHeadingDescription %}
+{% block title %} {{ pageHeading }} -> {{ pageDescription }} {% endblock title %}
+{% block breadcrumb %} {{ pageHeading|capitalize }} {{ pageDescription|lower }} {% endblock breadcrumb %}
+
+{% block body %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            <div class="callout callout-success">
+                <p> {{ flashMessage|raw }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% trans %} admin.dashboard.carousel.list {% endtrans %}</h3>
+        </div><!-- /.box-header -->
+        <a href="{{ path('app_admin_category_add') }}" class="btn btn-default" role="button">{% trans %} admin.dashboard.product.add {% endtrans %}</a>
+        <div class="box-body">
+            <table class="table table-bordered" id="products-table">
+                <tbody><tr>
+                    <th>{{ knp_pagination_sortable(pagination, '#', 'p.id') }}</th>
+                    <th width="55%"{% if pagination.isSorted('p.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Име на продукта', 'p.title') }}</th>
+                    <th width="55%"{% if pagination.isSorted('p.price') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Цена', 'p.price') }}</th>
+                    <th>{% trans %} form.edit {% endtrans %}</th>
+                    <th>{% trans %} form.delete {% endtrans %}</th>
+                </tr>
+                {% for product in pagination %}
+                    <tr>
+                        <td data-id="{{ product.id }}" data-type="product" class="index">{{ product.position }}</td>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.price }}</td>
+                        <td><a href="{{ path('app_admin_product_edit', {id : product.id}) }}" class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a href="{{ path('app_admin_product_delete', {id : product.id}) }}" class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    </tr>
+                {% endfor %}
+
+                </tbody></table>
+        </div><!-- /.box-body -->
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock body %}
