@@ -2,7 +2,7 @@
 
 @section('content')
 <p>Здравей, {{Auth::user()->Name}}</p>
-<div id="wrapper">
+<div id="wrapper" class="hidden-xs hidden-sm">
 
     <div id="success-message" class="success">
         &nbsp;
@@ -10,36 +10,51 @@
     <div id="error-message" class="error">
         &nbsp;
     </div>
-    <div id="user_info" style="min-height:100%; position:relative;">
-        <div id="skills" style="width: 300px; float: left;">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="skills" style="width: 300px; float: left;">
+            </div>
+            <div id="character_pic" style="width: 200px; float: right;">
+            </div>
         </div>
-        <div id="character_pic" style="width: 200px; float: right;">
-        </div>
-        <div style="position: absolute; top: 400px; background: #000; opacity: 0.5; color: white; padding: 10px; position: absolute; left: -30px; height: 64px; border-bottom-left-radius: 5px;">
-            <p><b>Skill points: <span id="spell_power"></span></b></p>
-            <p><b>Level: <span id="level"></span></b></p>
-        </div>
+        <!-- <div id="user_info" style="min-height:100%; position:relative;"> -->
+        
         <div id="description" style="position: fixed; z-index: 1000; background: #000; opacity: 0.8; color: white; padding: 6px 8px; width: 220px; display: none;"></div>
-        <div id="code" style="position: absolute; top: 330px; left: 520px; width: 250px;  border: 1px solid black; border-radius: 5px; -moz-border-radius: 5px;
-        padding: 5px; border-width:2px; border-style:solid; border-color:rgba(52,28,14,0.2); background-color:#110e0d; color:#909090">
-        Моля въведете кода, за да получите точки
-            <input type="text" class="form-control enter_code" id="codeValue" />
-            <button id="submitCode" class="btn btn-default" style="margin-left: 40px;margin-top: 5px; height: 24px; width:150px;text-align: center;line-height: 10px; background: url(http://magicschool.g-georgiev.com/img/enter-code.png);border:0px !important"></button>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="character-info">
+                <p><b>Skill points: <span id="spell_power"></span></b></p>
+                <p><b>Level: <span id="level"></span></b></p>
+            </div>
         </div>
-        <div id="xp_bar" style="position:absolute; bottom:-34px; left:-35px; width: 832px; background: url('img/xp-bar.png'); height: 68px;">
-            <div style="margin-left: 340px; margin-top: 5px; color: white; text-weight: bold;">
+        <div class="col-sm-6">
+            <div id="xp_bar">
+            <div>
                 XP: 
                 <span id="current-xp"></span>
                 /
                 <span id="max-xp"></span>
             </div>
-            <div class="progress" style="margin-top: 10px; margin-left: 3px; width: 827px; height: 29px; padding-left: 10px; padding-right: 10px;">
-              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 50%;height: 15px;margin-top: 6px;border-radius: 6px;">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                 <span class="sr-only">asdasd</span>
               </div>
             </div>
+            </div>
         </div>
+        <div class="col-sm-3">
+            <div id="code">
+            Моля въведете кода, за да получите точки
+                <input type="text" class="form-control enter_code" id="codeValue" />
+                <button id="submitCode" class="btn btn-primary submit-button">Submit</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
         <script>
+
         $('#error-message').hide();
         $('#success-message').hide();
         
@@ -252,7 +267,6 @@
             
             
         </script>
-    </div>
 </div>
 
 @endsection
