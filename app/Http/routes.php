@@ -40,7 +40,7 @@ Route::group(['middleware' => ['student']], function () {
 
 Route::group(['middleware' => ['teacher']], function () {
 
-	Route::post('/use_skill/{studentId}/{skillId}','TeacherController@userSkill');
+	Route::get('/use_skill/{studentId}/{skillId}','TeacherController@userSkill');
 	Route::get('/get-class/{class_id}','TeacherController@index');
 
 });  

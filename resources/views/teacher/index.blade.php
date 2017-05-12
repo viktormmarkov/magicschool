@@ -29,6 +29,7 @@ function Get_users() {
                 <th class="character-info">Информация</th>
                 <th class="spells">Умения</th>
                 <th class="appoints">Точки действие</th>
+                <th class="appoints">Добавяне на точки</th>
             </tr>
         </thead>
         @foreach ($students as $student)
@@ -46,6 +47,11 @@ function Get_users() {
             <td >
                 <div id="{{$student->id}}">
                     {{$student->ap}} ap
+                </div>
+            </td>
+            <td >
+                <div>
+                    <button onclick="showModal({{$student->id}})"></button>
                 </div>
             </td>
         </tr>   
@@ -77,9 +83,18 @@ function Get_users() {
                 $("#description").show();
             }
 
+    function showModal (student_id) {
+
+    }
+
+    function addPoints (stundent_id,ap,xp) {
+        $.post("{{url('/add_points/')}}",{student_id:student_id,ap:ap,xp:xp},function(data){
+            console.log(data);
+        }   
+    }
     function onSkillClick(uid,sid,name){
         if (confirm('Сигурни ли сте че искате да изпълните '+name+'?')){
-        requester.getJSON("api.php/use_skill/"+uid+"/"+sid).then(function(data){
+        $.get("{{url('/use_skill/')}}/"+uid+"/"+sid,function(data){
             console.log(data)
             if(data.success=="1"){
             $('#'+data.uid).html(data.Ap+" ap");
