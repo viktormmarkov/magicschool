@@ -19,6 +19,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <script src="{{url('js/jquery-2.0.3.js')}}"></script>
     <script src="{{url('js/rsvp.min.js')}}"></script>
     <script src="{{url('js/httpRequester.js')}}"></script>
+    <script src="{{url('js/carousel.js')}}"></script>
 </head>
 <body id="top">
   <div id="container" class="container" >
