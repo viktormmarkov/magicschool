@@ -2,7 +2,7 @@
 
 @section('content')
 <p>Здравей, {{Auth::user()->Name}}</p>
-<div id="wrapper" class="hidden-xs hidden-sm">
+<div id="wrapper">
 
     <div id="success-message" class="success">
         &nbsp;
@@ -21,15 +21,15 @@
         
         <div id="description" style="position: fixed; z-index: 1000; background: #000; opacity: 0.8; color: white; padding: 6px 8px; width: 220px; display: none;"></div>
     </div>
-    <div class="row">
+    <div class="row equal">
         <div class="col-sm-3">
-            <div class="character-info">
-                <p><b>Skill points: <span id="spell_power"></span></b></p>
-                <p><b>Level: <span id="level"></span></b></p>
+            <div class="character-details">
+                <p>Skill points: <span id="spell_power"></span></p>
+                <p>Level: <span id="level"></span></p>
             </div>
         </div>
         <div class="col-sm-6">
-            <div id="xp_bar">
+            <div class="character-details">
             <div>
                 XP: 
                 <span id="current-xp"></span>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-sm-3">
-            <div id="code">
+            <div class="character-details">
             Моля въведете кода, за да получите точки
                 <input type="text" class="form-control enter_code" id="codeValue" />
                 <button id="submitCode" class="btn btn-primary submit-button">Submit</button>
@@ -167,11 +167,14 @@
                 });
             }
             var skills = new Array();
+            //TODO: move in the getJSON
+            //$("#wrapper").css("background", "url('"+data.src+"')");
+            $("#wrapper").css("background", "url('img/characters/ranger.jpg')");
+
             requester.getJSON("api.php/user_info/"+uid).then(function(data){
                 for (var i = 0; i < data.skills.length; i++) {
                     skills.push(data.skills[i].Skills_Id);
                 }
-                $("#wrapper").css("background", "url('"+data.src+"')");
                 $('.progress-bar').css("width", data.Xp/(100*data.level+50*(data.level-1))*100+"%");
                 $('.progressbar').attr("", data.Xp);
                 $("#spell_power").text(data.Sp);

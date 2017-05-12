@@ -14,10 +14,6 @@ body{
     font-family: Verdana;
 }
 
-#xp_bar {
-    background: url('img/xp-bar.png');
-    height: 68px;
-}
 #container{
     top: 50%;
     left: 0;
@@ -26,6 +22,8 @@ body{
 #wrapper{
     height:100%;
     background: gray;
+    background-size: cover !important;
+    background-position: center !important; 
 }
 #wrapper-character{
     padding:30px;
@@ -241,4 +239,20 @@ background-color: #FFBABA;
 
 .question:hover {
     background: #66C2E0;
+}
+
+.character-details {
+    padding: 10px;  
+}
+
+.row.equal {
+    background: rgba(0,0,0, 0.7);
+}
+
+@media (min-width: 768px) {
+  .row.equal {
+    padding:15px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
