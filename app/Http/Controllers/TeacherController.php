@@ -20,9 +20,9 @@ use App\Models\Image;
 use App\Models\Banner;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Characteristics;
-use App\Models\Page;
+use App\Models\Message;
 use Session;
-use App\Models\Order;
+use App\Models\Skill;
 use App\Models\User;
 use App\Models\libs\DBoricaShell;
 use App\Models\libs\DPariba;
@@ -53,15 +53,58 @@ class TeacherController extends Controller
 				$data['success']=1;
 				if($data){
 					$message = $skill_info->name." беше използван от ".Auth::user()->name;
-					$db->execute("Insert INTO messages (user_id, teacher_id, text) VALUES ($uid,$tid,'".$message."')");
+					$msg = new Message;
+
+        			$msg->user_id = $studentId;
+        			$msg->teacher_id = Auth::user()->id;
+        			$msg->text = $message;
+
+					$msg->save();
 				}
+				$user_info->save();
 			}
 			else {
 				$data['status']='Недостигат кредити за това умение';	
 				$data['success']=0;
 			}
+
 			echo json_encode($data);
 
+    }
+
+    public function addPoints(Request $request) {
+    	$user = User::find($request->input('student_id'));
+    	$info['ap'] = $request->input('ap');
+    	$info ['xp'] = $request->input('xp');
+    	    $passive_skills=$user->skills()->where('passive',1)->get();
+            for($i=0;$i<count($passive_skills);$i++) {
+                $bonus=explode('%',$passive_skills[$i]["bonus"]);
+                if($passive_skills[$i]["bonus_field"]=='xp') {
+                    if(count($bonus)>1) {
+                        $info['xp']+=$info['xp']*$bonus[0]/100;
+                    }
+                    else $info['xp']+=$bonus[0];
+                }
+                else {
+                    if(count($bonus)>1) {
+                        $info['ap']+=$info['ap']*$bonus[0]/100;
+                    }
+                    else $info['ap']+=$bonus[0];
+                }
+                
+            }
+            $user->xp+=$info['xp'];
+            $user->ap+=$info['ap'];
+            $next_level_xp=(100*$user->level)+(50*($user->level-1));
+            while($user->xp>=$next_level_xp) {
+                $user->level++;
+                $user->sp++;
+                $user->xp-=$next_level_xp;
+                $data['result']='Поздравления вдигнахте ниво. Имате '.$user->sp.' точки за умения';
+                $next_level_xp=(100*$user->level)+(50*($user->level-1));
+            }
+            
+            $user->save(); 
     }
  
 }
