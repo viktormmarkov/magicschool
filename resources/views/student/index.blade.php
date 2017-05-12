@@ -54,7 +54,6 @@
     </div>
 
         <script>
-
         $('#error-message').hide();
         $('#success-message').hide();
         
@@ -84,20 +83,18 @@
                 });
             });
 
-            function removeDescription()
-            {
+            function removeDescription() {
                 $("#description").hide();
             }
 
-            function showDescription(name,desc, parents)
-            {
+            function showDescription(name, desc, parents, skills) {
                 
                 var height = $(window).height();
 
                 var X=event.clientX;
                 var Y=event.clientY;
                 
-                var description = "<h3>"+name+"</h3><p>"+desc+"</p>";
+                var description = "<h3>"+name+"</h3><p>"+desc+"</p>"; 
                 if(parents.length > 0){
                     description+="<p>Трябва да сте вдигнали: <span style='color: red;'>";
                     for (var i = 0; i <parents.length; i++) {
@@ -143,14 +140,16 @@
 
             var skills = new Array();
             //TODO: move in the getJSON
-            //$("#wrapper").css("background", "url('"+data.src+"')");
-            $("#wrapper").css("background", "url('img/characters/ranger.jpg')");
+            //
 
             $.get("{{url('/user_info/')}}",function(data){
                 data = JSON.parse(data);
+                console.log(data.skills);
                 for (var i = 0; i < data.skills.length; i++) {
-                    skills.push(data.skills[i].Skills_Id);
+                    skills.push(data.skills[i].id);
                 }
+                console.log(skills)
+                $("#wrapper").css("background", "url('"+data.src+"')");
                 $('.progress-bar').css("width", data.xp/(100*data.level+50*(data.level-1))*100+"%");
                 $('.progressbar').attr("", data.xp);
                 $("#spell_power").text(data.sp);
@@ -169,47 +168,46 @@
                         div.appendChild(img);
                         div.className = "icon";
                         div.style.position = "absolute";
-                        div.style.top = data[i].level*100 + "px";
+                        div.style.top = data[i].req_lvl*100 + "px";
                         div.style.left = data[i].depth*85 + "px";
-                        div.id = "skill-"+data[i].Id;
-                        div.setAttribute("onclick","addSkill("+data[i].Id+")");
-                        var parents = new Array();
-                        if(data[i].parent){
-                            for(var j = 0; j < data[i].parent.length; j++){
+                        div.id = "skill-"+data[i].id;
+                        div.setAttribute("onclick","addSkill("+data[i].id+")");
+                        var parents = [];
+                        var parentId = data[i].req_skill;
+
+                        if(parentId){
+                                parent = _.find(data, {id: parentId});
                                 var div_arrow = document.createElement("div");
                                 var img_arrow = document.createElement("img");
-                                if(data[i].depth>data[i].parent[j].depth) {
-                                     img_arrow.src = "img/leftarrow.png";
-                                     div_arrow.appendChild(img_arrow);
+                                if(data[i].depth>parent.depth) {
+                                    img_arrow.src = "img/leftarrow.png";
+                                    div_arrow.appendChild(img_arrow);
                                     div_arrow.style.position = "absolute";
-                                    div_arrow.style.top = ((data[i].level*100)-50) + "px";
+                                    div_arrow.style.top = ((data[i].req_lvl*100)-50) + "px";
                                     div_arrow.style.left = ((data[i].depth*85)-84) + "px";
                                     
                                     
                                 }
-                                if(data[i].depth==data[i].parent[j].depth) {
+                                if(data[i].depth==parent.depth) {
                                     img_arrow.src = "img/straightarrow.png";
                                     div_arrow.appendChild(img_arrow);
                                     div_arrow.style.position = "absolute";
-                                    div_arrow.style.top = ((data[i].level*100)-50) + "px";
+                                    div_arrow.style.top = ((data[i].req_lvl*100)-50) + "px";
                                     div_arrow.style.left = ((data[i].depth*85)) + "px";
                                     
                                     
                                 }
-                                if(data[i].depth<data[i].parent[j].depth) {
+                                if(data[i].depth<parent.depth) {
                                     img_arrow.src = "img/rightarrow.png";
                                     div_arrow.appendChild(img_arrow);
                                     div_arrow.style.position = "absolute";
-                                    div_arrow.style.top = ((data[i].level*100)-50) + "px";
+                                    div_arrow.style.top = ((data[i].req_lvl*100)-50) + "px";
                                     div_arrow.style.left = ((data[i].depth*85)-5) + "px";
                                     
                                 }
-                                div_arrow.addClass ="arrow-"+ data[i].parent[j].Id;
-                                 if(skills.indexOf(data[i].parent[j].Id) != -1)
-                                {
-    
-                                    div_arrow.style.opacity = 1;
-                                    
+                                div_arrow.addClass ="arrow-"+ parent.id;
+                                if(skills.indexOf(parentId) != -1){
+                                    div_arrow.style.opacity = 1;       
                                 }
                                 else
                                 {
@@ -217,13 +215,12 @@
                                 }       
                                 
                                 $("#skills").append(div_arrow);
-                                parents.push(data[i].parent[j].name);
-                            }
+                                parents.push(parent.name);
                         }
-                        div.setAttribute("onmouseover","showDescription('"+data[i].name+"','"+data[i].description+"','"+parents+"')");
+                        div.setAttribute("onmouseover","showDescription('"+data[i].name+"','"+data[i].description+"','"+parents+"','"+skills+"')");
                         div.setAttribute("onmouseout","removeDescription()");
 
-                        if(skills.indexOf(data[i].Id) != -1)
+                        if(skills.indexOf(data[i].id) != -1)
                         {
                             div.className = "activated";
                             div.style.opacity = 1;

@@ -20,6 +20,10 @@ Licence URI: http://www.os-templates.com/template-terms
     <script src="{{url('js/rsvp.min.js')}}"></script>
     <script src="{{url('js/httpRequester.js')}}"></script>
     <script src="{{url('js/carousel.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+    <script type="text/javascript">
+    	console.log(_.filter);
+    </script>
 </head>
 <body id="top">
   <div id="container" class="container" >
@@ -28,4 +32,5 @@ Licence URI: http://www.os-templates.com/template-terms
   </div>
 
 </body>
+
 </html>
