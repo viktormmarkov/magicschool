@@ -65,7 +65,8 @@ class StudentController extends Controller
         $info = $user;
         $info->character_name = $character['Name'];
         $info->src = $character->src;
-        $info['skills']=DB::select("Select * from users_has_skills where user_Id=".Auth::user()->id);
+        $info['skills']=Auth::user()->skills;
+        
         echo json_encode($info);
     }
 

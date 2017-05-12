@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class ClassSchool extends Model
 {   
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = 'users' ;
+    protected $table = 'classes';
 
 
     /**
@@ -20,7 +20,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'username','password','level','name','family','Access_level','Class_in_school','Character_type'
+        'name'
     ];
 
     /**
@@ -31,8 +31,4 @@ class User extends Model
     protected $hidden = [
         'remember_token',
     ];
-
-    public function skills() {
-        return $this->belongsToMany('App\Models\Skill','users_skills','user_id','skill_id');
-    }
 }
