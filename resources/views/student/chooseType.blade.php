@@ -49,7 +49,6 @@
 
 $( ".character-card" ).click(function(event) {
   $(".active-hero").removeClass("active-hero");
-  console.log(event);
   $(event.currentTarget).addClass("active-hero");
 });
 
