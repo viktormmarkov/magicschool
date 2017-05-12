@@ -60,13 +60,15 @@
         
             $("#submitCode").click(function(){
                 var codeInput = $("#codeValue").val();
-                requester.getJSON("api.php/activate_code/"+uid+"/"+codeInput).then(function(data){
+                $.get("{{url('/activate_code/')}}"+codeInput,function(data){
+                    data = JSON.parse(data);
+                    console.log(data);
                     if(data.success == 1){
-                        $("#current-xp").text(data.user_info.Xp);
+                        $("#current-xp").text(data.user_info.xp);
                         $("#max-xp").text(100*data.user_info.level+50*(data.user_info.level-1));
-                        $('.progress-bar').css("width", data.user_info.Xp/(100*data.user_info.level+50*(data.user_info.level-1))*100+"%");
-                        $('.progressbar').attr("", data.Xp);
-                        $("#spell_power").text(data.user_info.Sp);
+                        $('.progress-bar').css("width", data.user_info.xp/(100*data.user_info.level+50*(data.user_info.level-1))*100+"%");
+                        $('.progressbar').attr("", data.xp);
+                        $("#spell_power").text(data.user_info.sp);
                         $("#level").text(data.user_info.level);
                         $("#codeValue").val("");
                         var msg=data.status;
@@ -79,20 +81,6 @@
                         $("#error-message").text(data.status);
                         $("#error-message").show();
                     }
-                }, function(data){
-                    if(data.success == 1){
-                        $("#success-message").text(data.status);
-                    }
-                    else
-                    {
-                        $("#error-message").text(data.status);
-                        
-                    }
-                }).then(function(){
-                    setTimeout(function(){
-                        $("#error-message").hide();
-                        $("#success-message").hide();
-                    },4000);
                 });
             });
 
@@ -127,7 +115,8 @@
             }
 
             function addSkill(id){
-                requester.getJSON("api.php/get_skill/"+uid+"/"+id).then(function(data){
+                $.get("{{url('/get_skill/')}}"+id,function(data){
+                    data = JSON.parse(data);
                     if(data.success == 1)
                     {
                         $("#spell_power").text($("#spell_power").text()-1);
@@ -148,45 +137,33 @@
                         $("#error-message").text(data.status);
                         $("#error-message").show();
                     }
-                }, function(data){
-                    if(data.success == 1){
-                        $("#success-message").text(data.status);
-                        $("#success-message").show();
-                    }
-                    else
-                    {
-                        $("#error-message").text(data.status);
-                        $("#error-message").show();
-                        
-                    }
-                }).then(function(){
-                    setTimeout(function(){
-                            $("#success-message").hide();
-                            $("#error-message").hide();
-                        },4000);
                 });
             }
+
+
             var skills = new Array();
             //TODO: move in the getJSON
             //$("#wrapper").css("background", "url('"+data.src+"')");
             $("#wrapper").css("background", "url('img/characters/ranger.jpg')");
 
-            requester.getJSON("api.php/user_info/"+uid).then(function(data){
+            $.get("{{url('/user_info/')}}",function(data){
+                data = JSON.parse(data);
                 for (var i = 0; i < data.skills.length; i++) {
                     skills.push(data.skills[i].Skills_Id);
                 }
-                $('.progress-bar').css("width", data.Xp/(100*data.level+50*(data.level-1))*100+"%");
-                $('.progressbar').attr("", data.Xp);
-                $("#spell_power").text(data.Sp);
+                $('.progress-bar').css("width", data.xp/(100*data.level+50*(data.level-1))*100+"%");
+                $('.progressbar').attr("", data.xp);
+                $("#spell_power").text(data.sp);
                 $("#level").text(data.level);
-                $("#current-xp").text(data.Xp);
+                $("#current-xp").text(data.xp);
                 $("#max-xp").text(100*data.level+50*(data.level-1));
 
-                requester.getJSON("api.php/character_skills/"+uid).then(function(data){
+                $.get("{{url('/character_skills/')}}",function(data){
+                    data = JSON.parse(data);
                     for(var i = 0; i<data.length; i++){
                         var div = document.createElement("div");
                         var img = document.createElement("img");
-                        img.src = CONFIG_HOST+data[i].src;
+                        img.src = data[i].src;
                         img.width = "50";
                         img.height = "50";
                         div.appendChild(img);
@@ -202,7 +179,7 @@
                                 var div_arrow = document.createElement("div");
                                 var img_arrow = document.createElement("img");
                                 if(data[i].depth>data[i].parent[j].depth) {
-                                     img_arrow.src = CONFIG_HOST+"/img/leftarrow.png";
+                                     img_arrow.src = "img/leftarrow.png";
                                      div_arrow.appendChild(img_arrow);
                                     div_arrow.style.position = "absolute";
                                     div_arrow.style.top = ((data[i].level*100)-50) + "px";
@@ -211,7 +188,7 @@
                                     
                                 }
                                 if(data[i].depth==data[i].parent[j].depth) {
-                                    img_arrow.src = CONFIG_HOST+"/img/straightarrow.png";
+                                    img_arrow.src = "img/straightarrow.png";
                                     div_arrow.appendChild(img_arrow);
                                     div_arrow.style.position = "absolute";
                                     div_arrow.style.top = ((data[i].level*100)-50) + "px";
@@ -220,7 +197,7 @@
                                     
                                 }
                                 if(data[i].depth<data[i].parent[j].depth) {
-                                    img_arrow.src = CONFIG_HOST+"/img/rightarrow.png";
+                                    img_arrow.src = "img/rightarrow.png";
                                     div_arrow.appendChild(img_arrow);
                                     div_arrow.style.position = "absolute";
                                     div_arrow.style.top = ((data[i].level*100)-50) + "px";
@@ -240,10 +217,10 @@
                                 }       
                                 
                                 $("#skills").append(div_arrow);
-                                parents.push(data[i].parent[j].Name);
+                                parents.push(data[i].parent[j].name);
                             }
                         }
-                        div.setAttribute("onmouseover","showDescription('"+data[i].Name+"','"+data[i].Description+"','"+parents+"')");
+                        div.setAttribute("onmouseover","showDescription('"+data[i].name+"','"+data[i].description+"','"+parents+"')");
                         div.setAttribute("onmouseout","removeDescription()");
 
                         if(skills.indexOf(data[i].Id) != -1)
@@ -258,13 +235,7 @@
 
                         $("#skills").append(div);
                     }
-                    
-                    
-                }, function(){
-                    console.log("error");
                 });
-            }, function(){
-                console.log("error");
             });
 
             

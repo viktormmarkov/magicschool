@@ -36,9 +36,32 @@ class TeacherController extends Controller
 
     }
 
-    public function index(){
-        
-        echo 1;
+    public function index($class = null){
+        $classes=Auth::user()->classes;
+        $students = array();
+        if($class) $students=User::where('Class_in_school',$class)->get();
+            return view('teacher/index')->with('classes',$classes)->with('students',$students)->with('current_class',$class);
+    }
+    public function userSkill($studentId,$skillId) {
+    		$data=array();
+			$skill_info=Skill::find($skillId);
+			$user_info=User::find($studentId);
+			if($user_info->ap>=$skill_info->ap and $user_info and $skill_info) {
+				$user_info->ap -= $skill_info->ap;
+				$data['ap']=$user_info->ap;
+				$data['status']='Използването на '.$skill_info->name.' се изпълни успешно';	
+				$data['success']=1;
+				if($data){
+					$message = $skill_info->name." беше използван от ".Auth::user()->name;
+					$db->execute("Insert INTO messages (user_id, teacher_id, text) VALUES ($uid,$tid,'".$message."')");
+				}
+			}
+			else {
+				$data['status']='Недостигат кредити за това умение';	
+				$data['success']=0;
+			}
+			echo json_encode($data);
+
     }
  
 }
