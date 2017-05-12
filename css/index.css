@@ -13,20 +13,17 @@ body{
 
     font-family: Verdana;
 }
+
 #container{
     top: 50%;
     left: 0;
     width: 100%;
 }
 #wrapper{
-    padding:30px;
-    margin-left:auto;
-    margin-right:auto;
-	height:532px;
-    width:832px;
-    background-color:#0c0909;
-    border: 4px solid #2c1c0e;
-    border-radius: 10px;
+    height:100%;
+    background: gray;
+    background-size: cover !important;
+    background-position: center !important; 
 }
 #wrapper-character{
     padding:30px;
@@ -192,21 +189,17 @@ color:	#686868;
     font-size: 18px;
     width:100px;
 }
-.odd{
-    background: #f2f2f2;
-}
-.even{
-    background: #f9f9f9;
-}
 .enter_code{
 	color:black !important;
 	height:24px !important;
 	background-color:#C3C3C2 !important;
-		
-	
 }
 .progress {
 	background-color:transparent !important;
+}
+
+.progress-bar {
+    width: 50%;height: 15px;margin-top: 6px;border-radius: 6px;
 }
 
 .info, .success, .warning, .error, .validation {
@@ -221,12 +214,10 @@ z-index:10000;
 .success {
 color: #4F8A10;
 background-color: #DFF2BF;
-//background-image:url('success.png');
 }
 .error {
 color: #D8000C;
 background-color: #FFBABA;
-//background-image: url('error.png');
 }
 .form_input{
 	height: 45px;
@@ -248,4 +239,20 @@ background-color: #FFBABA;
 
 .question:hover {
     background: #66C2E0;
+}
+
+.character-details {
+    padding: 10px;  
+}
+
+.row.equal {
+    background: rgba(0,0,0, 0.7);
+}
+
+@media (min-width: 768px) {
+  .row.equal {
+    padding:15px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
