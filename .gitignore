@@ -19,3 +19,4 @@ storage/
 tests/
 upload/
 vendor/
+resources/views/admin
