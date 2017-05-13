@@ -48,9 +48,8 @@ function Get_users() {
             <td >
                 <div id="{{$student->id}}">
                     {{$student->ap}} ap
-                </div>
-                <div>
-                    <button onclick="showModal({{$student->id}})"></button>
+                    <button class="btn btn-sm btn-default" onclick="showModal({{$student->id}})">Добави</button>
+
                 </div>
             </td>
         </tr>   
@@ -58,6 +57,22 @@ function Get_users() {
         </table>
         @endif
     <div>
+</div>
+<div id="points-modal" class="modal modal-sm" title="Добави точки">
+    <div class="form-inline">
+      <div class="form-group">
+        <label for="ap">Точки действие</label>
+        <input type="number" class="form-control" min="0" id="ap" placeholder="Добави точки действие">
+      </div>
+      <div class="form-group">
+        <label for="xp">Точки Опит</label>
+        <input type="number" class="form-control" min="0" id="xp" placeholder="Добави точки опит">
+        <input type="hidden" class="form-control" min="0" id="student_id" placeholder="Добави точки опит">
+      </div>
+      <div class="form-group">
+            <button onclick="addPoints()" class="btn btn-primary">Добави</button>
+      </div>
+    </div>
 </div>
 <div id="description" style="position: fixed; z-index: 1; background: #000; opacity: 0.8; color: white; padding: 6px 8px; width: 200px; display: none;"></div>
 <script>
@@ -84,14 +99,28 @@ function Get_users() {
     }
 
     function showModal (student_id) {
+        $("#points-modal").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true
+        });
 
-    }
+        $("#student_id").val(student_id);
+    }   
 
-    function addPoints (stundent_id,ap,xp) {
-        $.post("{{url('/add_points/')}}",
-            {student_id:student_id,ap:ap,xp:xp},
+    function addPoints () {
+        var object = {
+            student_id: $('#student_id').val(),
+            ap: $('#ap').val(),
+            xp: $('#xp').val()
+        };
+
+        $.post("{{url('/add_point/')}}",
+            object,
             function(data){
                 console.log(data);
+                $("#points-modal").dialog("close");
             }); 
     }
     function onSkillClick(uid,sid,name){
