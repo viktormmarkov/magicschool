@@ -27,14 +27,14 @@
     <div class="row equal dark-row">
         <div class="col-sm-3">
             <div class="character-details">
-                <p>Skill points: <span id="spell_power"></span></p>
-                <p>Level: <span id="level"></span></p>
+                <p>Точки за умения: <span id="spell_power"></span></p>
+                <p>Ниво: <span id="level"></span></p>
             </div>
         </div>
         <div class="col-sm-9">
             <div class="character-details">
             <div>
-                XP: 
+                Точки опит: 
                 <span id="current-xp"></span>
                 /
                 <span id="max-xp"></span>
@@ -59,7 +59,6 @@
                 var codeInput = $("#codeValue").val();
                 $.get("{{url('/activate_code/')}}/"+codeInput,function(data){
                     data = JSON.parse(data);
-                    console.log(data);
                     if(data.success == 1){
                         $("#current-xp").text(data.user_info.xp);
                         $("#max-xp").text(100*data.user_info.level+50*(data.user_info.level-1));
