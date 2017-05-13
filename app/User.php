@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function classes() {
         return $this->belongsToMany('App\Models\ClassSchool','users_classes','user_id','classes_Id');
     }
+    public function characterName() {
+        $producer = Character::where('id',$this->attributes['Character_type'])->first();
+        return $producer['name'];
+    }
 }

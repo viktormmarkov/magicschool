@@ -207,6 +207,11 @@ color:	#686868;
     font-size: 18px;
     padding-left: 20px
 }
+.skill {
+    display: inline-block;
+    padding: 0 5px;
+    margin: 0 5px;
+}
 .skillicon{
     width:50px;
     height:50px;
