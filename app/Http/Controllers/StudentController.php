@@ -95,13 +95,20 @@ class StudentController extends Controller
         }
 
         if(!isset($data)) {
+            $skills = Auth::user()->skills;
+            $data['skills'] = '';
+            foreach ($skills as $key => $value) {
+                $data['skills'].=$value->id;
+                $data['skills'].=',';
+            }
+            $data['skills'].=$skill_id;
             Auth::user()->skills()->attach([$skill_id]);
             Auth::user()->sp--;
             Auth::user()->save();
             $data['status']='Успешно вдигнахте ново умение';
             $data['success']=1;
         }
-        print_r($data);
+        echo json_encode($data);
     }
 
     public function addCodeToUser($code) {
