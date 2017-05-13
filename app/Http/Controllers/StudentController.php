@@ -227,7 +227,7 @@ class StudentController extends Controller
             $data['success']=0;
             $data['status']='Вашият отговор не беше правилен';
         }
-        echo json_encode($data);
+        echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 
  

@@ -14,8 +14,8 @@
 	var interval;
 
 	function sendAnswer(aid, qid){
-		requester.getJSON("{{url('send_answer/')}}/"+aid+"/"+qid,function(data){
-			$("#dialog").dialog("close");
+		$.get("{{url('send_answer/')}}/"+aid+"/"+qid,function(data){
+                    data = JSON.parse(data);
     		clearInterval(interval);
     		if(data.success){
     			$("#success-msg").text(data.status);
@@ -25,7 +25,8 @@
 				$("#success-msg").show();;
                         setTimeout(function(){
                             $("#success-msg").hide();
-                        },5000);
+                            location.reload();
+                        },1500);
     		}
     		else
     		{
@@ -33,7 +34,8 @@
 				$("#error-msg").show();
                         setTimeout(function(){
                             $("#error-msg").hide();
-                        },5000);
+                            location.reload();
+                        },1500);
     		}
 		
 		});
@@ -46,6 +48,7 @@
 		$("#dialog").append("<p>Време за отговор: "+time+"</p>");
 		$.get("{{url('get_answers/')}}/"+qid,function(data){
                     data = JSON.parse(data);
+                    if(data.length==0) $("#dialog").dialog("close");
 			for(var i=0; i<data.length;i++){
 				$("#dialog").append('<div class="question" onclick="sendAnswer('+data[i].id+', '+data[i].quest_id+');">'+data[i].answer+'</div>');
 			}

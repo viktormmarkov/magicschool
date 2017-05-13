@@ -79,11 +79,11 @@ class TeacherController extends Controller
 			$answer = new Answer;
 			$answer->quest_id = $question->id;
 			$answer->answer = $answers[$i];
+			$answer->save();
 			if($i==$right_answer) { 
 				$right_answer_id=$answer->id;
 				$question->answer_id=$right_answer_id;
 			}
-			$answer->save();
 		}
 
 

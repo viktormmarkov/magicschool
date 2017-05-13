@@ -35,7 +35,10 @@ class User extends Model
     public function skills() {
         return $this->belongsToMany('App\Models\Skill','users_skills','user_id','skill_id');
     }
-    public function questions() {
+    public function activeskills () {
+        return $this->belongsToMany('App\Models\Skill','users_skills','user_id','skill_id')->where('passive',0);
+    }
+     public function questions() {
         return $this->belongsToMany('App\Models\Question','send_question_to_user','user_id','question_id');
     }
     public function characterName() {
