@@ -15,6 +15,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="{{url('css/index.css')}}" rel="stylesheet" type="text/css" media="all">
 <link href="{{url('css/overridebootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="{{url('js/jquery-2.0.3.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -37,26 +38,26 @@ Licence URI: http://www.os-templates.com/template-terms
                         <ul ul class="nav navbar-nav" style="width: 98%;">
                             <li >
                                 <a href="{{url('/codes')}}">
-                                    <span class="glyphicon glyphicon-barcode"></span>
+                                    <i class="fa-address-card"></i>
                                     Генериране на кодове
                                 </a>
                             </li>
                             <li>
                                 <a href="{{url('/get-class')}}">
-                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    <i class="fa fa-list"></i>
                                     Ученици
                                 </a>
                             </li>
                             <li>
                                 <a href="{{url('/add-question')}}">
-                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    <i class="fa fa-question-circle"></i>
                                     Създаване на въпрос
                                 </a>
                             </li>
                             <li class="pull-right">
                                 <a href="{{url('/logout')}}">
                                     Изход
-                                    <span class="glyphicon glyphicon-off"></span>
+                                    <i class="fa fa-sign-out"></i>
                                 </a>
                             </li>
                             </ul>
@@ -68,13 +69,13 @@ Licence URI: http://www.os-templates.com/template-terms
                         <ul ul class="nav navbar-nav" style="width: 98%;">
                             <li class="pull-left">
                                 <a href="{{url('/')}}">
-                                    <span class="glyphicon glyphicon-user"></span>
+                                   <i class="fa fa-user"></i>
                                     Профил
                                 </a>
                             </li>
                             <li>
                                 <a href="{{url('messages')}}">
-                                <span class="glyphicon glyphicon-envelope"></span>
+                                   <i class="fa fa-envelope"></i>
                                     @if($new_messages)
                                         Нови Съобщения
                                         <span class="badge">{{$new_messages}}</span>
@@ -85,7 +86,7 @@ Licence URI: http://www.os-templates.com/template-terms
                             </li>
                             <li>
                                 <a href="{{url('questions')}}">
-                                    <span class="glyphicon glyphicon-bell"></span>
+                                    <i class="fa fa-bell"></i>
                                     Въпроси 
                                      @if($new_questions)
                                         <span class="badge">{{$new_questions}}</span>
@@ -95,7 +96,7 @@ Licence URI: http://www.os-templates.com/template-terms
                             <li class="pull-right">
                                 <a href="{{url('logout')}}">
                                     Изход
-                                    <span class="glyphicon glyphicon-off"></span>
+                                    <i class="fa fa-sign-out"></i>
                                 </a>
                             </li>
                         </ul>

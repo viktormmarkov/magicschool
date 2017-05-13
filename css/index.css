@@ -139,11 +139,18 @@ color:	#686868;
     background:url("../../img/charactersprite.jpg") -470px 0px no-repeat;
 }
 
-#skills{
+.skills-wrapper{
     position:relative;
-    width:300px;
     height:550px;
 }
+
+#skills {
+    width: 300px;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
 .icon {
     position:absolute;
     width:54px;
@@ -277,7 +284,7 @@ background-color: #FFBABA;
     padding: 10px;  
 }
 
-.row.equal {
+.row.dark-row {
     background: rgba(0,0,0, 0.7);
 }
 

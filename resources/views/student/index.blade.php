@@ -10,18 +10,21 @@
     <div id="error-message" class="error">
         &nbsp;
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div id="skills" style="width: 300px; float: left;">
+    <div class="row equal">
+        <div class="col-sm-3">
+            <div class="skills-wrapper">
+                <div id="skills">
+                    <div></div>
+                </div>
             </div>
-            <div id="character_pic" style="width: 200px; float: right;">
-            </div>
+        </div>
+        <div class="col-sm-9">
         </div>
         <!-- <div id="user_info" style="min-height:100%; position:relative;"> -->
         
         <div id="description" style="position: fixed; z-index: 1000; background: #000; opacity: 0.8; color: white; padding: 6px 8px; width: 220px; display: none;"></div>
     </div>
-    <div class="row equal">
+    <div class="row equal dark-row">
         <div class="col-sm-3">
             <div class="character-details">
                 <p>Skill points: <span id="spell_power"></span></p>
