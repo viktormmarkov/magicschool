@@ -35,6 +35,12 @@ class StudentController extends Controller
 
     public function __construct(){
 
+        $messages = Message::where('IsRead',0)->where('User_Id',Auth::user()->id)->get();
+        $questions = Auth::user()->questions;
+
+        View::share('new_messages',count($messages));
+        View::share('new_questions',count($questions));
+
     }
 
     public function index(){

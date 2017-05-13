@@ -30,7 +30,7 @@
     		else
     		{
     			$("#error-msg").text(data.status);
-				$("#error-msg").show();;
+				$("#error-msg").show();
                         setTimeout(function(){
                             $("#error-msg").hide();
                         },5000);
@@ -45,7 +45,6 @@
 		$("#dialog").append("<p>Въпрос: "+question+"</p>");
 		$("#dialog").append("<p>Време за отговор: "+time+"</p>");
 		$.get("{{url('get_answers/')}}/"+qid,function(data){
-			console.log(data);
                     data = JSON.parse(data);
 			for(var i=0; i<data.length;i++){
 				$("#dialog").append('<div class="question" onclick="sendAnswer('+data[i].id+', '+data[i].quest_id+');">'+data[i].answer+'</div>');

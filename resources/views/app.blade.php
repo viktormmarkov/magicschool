@@ -22,16 +22,93 @@ Licence URI: http://www.os-templates.com/template-terms
     <script src="{{url('js/httpRequester.js')}}"></script>
     <script src="{{url('js/carousel.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
-    <script type="text/javascript">
-    	console.log(_.filter);
-    </script>
+
 </head>
 <body id="top">
   <div id="container" class="container" >
+    <div id="success-msg" class="success">
+        </div>
+        <div id="error-msg" class="error">
+        </div>
+        @if(Auth::check() and Auth::user()->isTeacher())
+                            <nav class="navbar navbar-inverse" role="navigation" style="width: 100%;">
+                    <div class="navbar-header" style="width: 100%;">
+                        <!--Teacher's Menu-->
+                        <ul ul class="nav navbar-nav" style="width: 98%;">
+                            <li >
+                                <a href="{{url('/codes')}}">
+                                    <span class="glyphicon glyphicon-barcode"></span>
+                                    Генериране на кодове
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/get-class')}}">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Ученици
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('/add-question')}}">
+                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    Създаване на въпрос
+                                </a>
+                            </li>
+                            <li class="pull-right">
+                                <a href="{{url('/logout')}}">
+                                    Изход
+                                    <span class="glyphicon glyphicon-off"></span>
+                                </a>
+                            </li>
+                            </ul>
+                    </div>
+                </nav>       
+        @elseif(Auth::check() and Auth::user()->isStudent())
+            <nav class="navbar navbar-inverse" role="navigation" style="width: 100%;">
+                    <div class="navbar-header" style="width: 100%;">
+                        <ul ul class="nav navbar-nav" style="width: 98%;">
+                            <li class="pull-left">
+                                <a href="{{url('/')}}">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    Профил
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('messages')}}">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                                    @if($new_messages)
+                                        Нови Съобщения
+                                        <span class="badge">{{$new_messages}}</span>
+                                    @else
+                                        Съобщения
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('questions')}}">
+                                    <span class="glyphicon glyphicon-bell"></span>
+                                    Въпроси 
+                                     @if($new_questions)
+                                        <span class="badge">{{$new_questions}}</span>
+                                    @endif
+                                </a>
+                            </li>
+                            <li class="pull-right">
+                                <a href="{{url('logout')}}">
+                                    Изход
+                                    <span class="glyphicon glyphicon-off"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>       
 
+        @endif
         @yield('content')
   </div>
-
+<script type="text/javascript">
+    $('#error-msg').hide();
+        $('#success-msg').hide();
+</script>
 </body>
 
 </html>
