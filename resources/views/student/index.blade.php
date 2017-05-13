@@ -45,8 +45,7 @@
         </div>
         <div class="col-sm-3">
             <div class="character-details">
-            Моля въведете кода, за да получите точки
-                <input type="text" class="form-control enter_code" id="codeValue" />
+                <input type="text" class="form-control enter_code" id="codeValue" placeholder="Въведете код"/>
                 <button id="submitCode" class="btn btn-primary submit-button">Submit</button>
             </div>
         </div>
