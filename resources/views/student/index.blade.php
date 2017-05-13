@@ -31,7 +31,7 @@
                 <p>Level: <span id="level"></span></p>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-9">
             <div class="character-details">
             <div>
                 XP: 
@@ -47,10 +47,6 @@
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="character-details">
-                <input type="text" class="form-control enter_code" id="codeValue" placeholder="Въведете код"/>
-                <button id="submitCode" class="btn btn-primary submit-button">Submit</button>
-            </div>
         </div>
     </div>
     </div>
