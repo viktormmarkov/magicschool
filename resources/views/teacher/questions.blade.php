@@ -6,7 +6,7 @@
 <table class="table">
 @foreach($questions as $question)
 <tr>
-	<td>{{$question->question}}</td><
+	<td>{{$question->question}}</td>
 </tr>
 @endforeach
 </table>

@@ -36,12 +36,6 @@ Licence URI: http://www.os-templates.com/template-terms
                     <div class="navbar-header" style="width: 100%;">
                         <!--Teacher's Menu-->
                         <ul ul class="nav navbar-nav" style="width: 98%;">
-                            <li >
-                                <a href="{{url('/codes')}}">
-                                    <i class="fa-address-card"></i>
-                                    Генериране на кодове
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{url('/get-class')}}">
                                     <i class="fa fa-list"></i>
