@@ -112,7 +112,7 @@
             }
 
             function addSkill(id){
-                $.get("{{url('/get_skill/')}}"+id,function(data){
+                $.get("{{url('/get_skill/')}}/"+id,function(data){
                     data = JSON.parse(data);
                     if(data.success == 1)
                     {

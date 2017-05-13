@@ -14,7 +14,6 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="all">
 <link href="{{url('css/index.css')}}" rel="stylesheet" type="text/css" media="all">
 <link href="{{url('css/overridebootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
-<link href="{{url('css/teacherview.css')}}" rel="stylesheet" type="text/css" media="all">
 
     <script src="{{url('js/jquery-2.0.3.js')}}"></script>
     <script src="{{url('js/rsvp.min.js')}}"></script>

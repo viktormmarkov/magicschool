@@ -35,4 +35,8 @@ class User extends Model
     public function skills() {
         return $this->belongsToMany('App\Models\Skill','users_skills','user_id','skill_id');
     }
+    public function characterName() {
+        $producer = Character::where('id',$this->attributes['Character_type'])->first();
+        return $producer['Name'];
+    }
 }
