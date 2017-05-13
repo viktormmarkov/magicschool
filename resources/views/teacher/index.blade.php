@@ -47,7 +47,7 @@ function Get_users() {
             </td>
             <td >
                 <div id="{{$student->id}}">
-                    <span id="ap-{{$student->id}}">{{$student->ap}}</span> ap
+                    <span id="ap-{{$student->id}}">{{$student->ap}}</span> т.
                     <button class="btn btn-sm btn-default" onclick="showModal({{$student->id}})">Добави</button>
 
                 </div>
@@ -132,9 +132,10 @@ function Get_users() {
     function onSkillClick(uid,sid,name){
         if (confirm('Сигурни ли сте че искате да изпълните '+name+'?')){
         $.get("{{url('/use_skill/')}}/"+uid+"/"+sid,function(data){
+                data = JSON.parse(data);
             console.log(data)
             if(data.success=="1"){
-            $('#'+data.uid).html(data.Ap+" ap");
+            $('#ap-'+data.uid).html(data.ap);
             $("#success-msg").html(data.status);    
             $("#success-msg").show();
              setTimeout(function(){

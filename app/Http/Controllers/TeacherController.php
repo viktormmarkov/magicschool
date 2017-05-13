@@ -112,10 +112,11 @@ class TeacherController extends Controller
 			if($user_info->ap>=$skill_info->ap and $user_info and $skill_info) {
 				$user_info->ap -= $skill_info->ap;
 				$data['ap']=$user_info->ap;
+				$data['uid']=$studentId;
 				$data['status']='Използването на '.$skill_info->name.' се изпълни успешно';	
 				$data['success']=1;
 				if($data){
-					$message = $skill_info->name." беше използван от ".Auth::user()->Name;
+					$message = "Умението - ". $skill_info->name." беше използвано от ".Auth::user()->Name;
 					$msg = new Message;
 
         			$msg->user_id = $studentId;
@@ -131,7 +132,7 @@ class TeacherController extends Controller
 				$data['success']=0;
 			}
 
-			echo json_encode($data);
+			echo json_encode($data,JSON_UNESCAPED_UNICODE);
 
     }
 
