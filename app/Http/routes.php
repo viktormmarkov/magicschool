@@ -45,6 +45,8 @@ Route::group(['middleware' => ['teacher']], function () {
 	Route::get('/use_skill/{studentId}/{skillId}','TeacherController@userSkill');
 	Route::get('/get-class/{class_id?}','TeacherController@index');
 	Route::post('/add_point','TeacherController@addPoints');
+	Route::get('/add-question','TeacherController@addQuestionView');
+	Route::post('/add-question','TeacherController@addQuestion');
 
 });  
 
