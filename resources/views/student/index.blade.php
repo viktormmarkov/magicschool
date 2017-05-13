@@ -89,8 +89,9 @@
                 var height = $(window).height();
                 var X=event.clientX;
                 var Y=event.clientY;
-                skills = $('#skills div').attr('skills');
-                
+                tempSkills = $('#skills div').attr('skills');
+                if(tempSkills !== undefined )skills = tempSkills;
+
                 var description = "<h3>"+name+"</h3><p>"+desc+"</p>";
                 parents = parents.split(",");  
                 skills = skills.split(",");   
