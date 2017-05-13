@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Question extends Model
 {   
@@ -31,4 +32,10 @@ class Question extends Model
     protected $hidden = [
         'remember_token',
     ];
+
+    public function teacherName() {
+
+        $teacher = User::where('id',$this->attributes['user_id'])->first();
+        return $teacher['Name'];
+    }
 }

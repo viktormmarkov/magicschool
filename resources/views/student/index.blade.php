@@ -59,7 +59,7 @@
         
             $("#submitCode").click(function(){
                 var codeInput = $("#codeValue").val();
-                $.get("{{url('/activate_code/')}}"+codeInput,function(data){
+                $.get("{{url('/activate_code/')}}/"+codeInput,function(data){
                     data = JSON.parse(data);
                     console.log(data);
                     if(data.success == 1){
@@ -90,17 +90,21 @@
             function showDescription(name, desc, parents, skills) {
                 
                 var height = $(window).height();
-
                 var X=event.clientX;
                 var Y=event.clientY;
+                skills = $('#skills div').attr('skills');
                 
-                var description = "<h3>"+name+"</h3><p>"+desc+"</p>"; 
-                if(parents.length > 0){
-                    description+="<p>Трябва да сте вдигнали: <span style='color: red;'>";
-                    for (var i = 0; i <parents.length; i++) {
-                        description+=parents[i];
+                var description = "<h3>"+name+"</h3><p>"+desc+"</p>";
+                parents = parents.split(",");  
+                skills = skills.split(",");   
+                if(parents.length > 1){ 
+                    if(skills.indexOf(parents[1]) == -1) {
+                        description+="<p>Трябва да сте вдигнали: <span style='color: red;'>";
+                    
+                        description+=parents[0];
+                    
+                        description+="</span></p>";
                     }
-                    description+="</span></p>";
                 }
                 $("#description").html(description);
                 var desc_height=$("#description").height();
@@ -126,7 +130,7 @@
                         $(".arrow-"+id).each(function(){
                             this.css("opacity", "1");
                         });
-                        
+                        $('#skills div').attr("skills",data.skills);
                         skillNode.className = "activated";
                     }
                     else
@@ -148,7 +152,6 @@
                 for (var i = 0; i < data.skills.length; i++) {
                     skills.push(data.skills[i].id);
                 }
-                console.log(skills)
                 $("#wrapper").css("background", "url('"+data.src+"')");
                 $('.progress-bar').css("width", data.xp/(100*data.level+50*(data.level-1))*100+"%");
                 $('.progressbar').attr("", data.xp);
@@ -216,8 +219,10 @@
                                 
                                 $("#skills").append(div_arrow);
                                 parents.push(parent.name);
+                                parents.push(parent.id);
                         }
                         div.setAttribute("onmouseover","showDescription('"+data[i].name+"','"+data[i].description+"','"+parents+"','"+skills+"')");
+                        div.setAttribute("skills",skills);
                         div.setAttribute("onmouseout","removeDescription()");
 
                         if(skills.indexOf(data[i].id) != -1)

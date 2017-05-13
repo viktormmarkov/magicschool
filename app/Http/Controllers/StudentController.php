@@ -13,7 +13,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Settings;
 use App\Models\Answer;
-use App\Models\News;
+use App\Models\Message;
 use App\Models\Skill;
 use App\Http\Controllers\Controller;
 use App\Models\Code;
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Characteristics;
 use App\Models\Page;
 use Session;
-use App\Models\Order;
+use App\Models\Question;
 use App\Models\User;
 use App\Models\libs\DBoricaShell;
 use App\Models\libs\DPariba;
@@ -95,15 +95,37 @@ class StudentController extends Controller
         }
 
         if(!isset($data)) {
+            $skills = Auth::user()->skills;
+            $data['skills'] = '';
+            foreach ($skills as $key => $value) {
+                $data['skills'].=$value->id;
+                $data['skills'].=',';
+            }
+            $data['skills'].=$skill_id;
             Auth::user()->skills()->attach([$skill_id]);
             Auth::user()->sp--;
             Auth::user()->save();
             $data['status']='Успешно вдигнахте ново умение';
             $data['success']=1;
         }
-        print_r($data);
+        echo json_encode($data);
     }
 
+    public function getMessages() {
+        $messages = Message::where('IsRead',0)->where('User_Id',Auth::user()->id)->get();
+        foreach ($messages as $message) {
+            $message->IsRead = 1;
+            $message->save();
+        }
+        
+        return view('student/messages')->with('messages',$messages);
+    }
+    public function getQuestions() {
+
+        $questions = Auth::user()->questions;
+        
+        return view('student/questions')->with('questions',$questions);
+    }
     public function addCodeToUser($code) {
 
         $info=Code::where('UniqueName',$code)->get();
@@ -152,7 +174,7 @@ class StudentController extends Controller
     }
 
     public function getQuestionAnswers($question_id) {
-        $data=Answer::where('quest_id',$question_id);
+        $data=Answer::where('quest_id',$question_id)->get();
 
         DB::statement("Update send_question_to_user set seen=1 where user_id=".Auth::user()->id." and question_id=".$question_id);
         echo json_encode($data);
@@ -172,15 +194,15 @@ class StudentController extends Controller
                 }
                 else {
                     if(count($bonus)>1) {
-                        $info['Ap']+=$info['Ap']*$bonus[0]/100;
+                        $info['ap']+=$info['ap']*$bonus[0]/100;
                     }
-                    else $info['Ap']+=$bonus[0];
+                    else $info['ap']+=$bonus[0];
                 }
                 
             }
 
             Auth::user()->xp+=$info['xp'];
-            Auth::user()->ap+=$info['Ap'];
+            Auth::user()->ap+=$info['ap'];
             $next_level_xp=(100*Auth::user()->level)+(50*(Auth::user()->level-1));
             while(Auth::user()->xp>=$next_level_xp) {
                 Auth::user()->level++;
@@ -193,7 +215,7 @@ class StudentController extends Controller
 
             $data['success']=1;
             $data['status']='Вашият отговор беше правилен';
-            $data['user_info']=$user_info;
+            $data['user_info']=Auth::user();
         }
         else {
             $data['success']=0;
