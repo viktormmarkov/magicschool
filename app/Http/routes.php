@@ -31,6 +31,8 @@ Route::group(['middleware' => ['student']], function () {
 
 	Route::post('/set-type','StudentController@setType');
 	Route::get('/user_info/{user_id?}','StudentController@getInfo');
+	Route::get('/messages','StudentController@getMessages');
+	Route::get('/questions','StudentController@getQuestions');
 	Route::get('/character_skills','StudentController@getCharacterSkills');
 	Route::get('/get_skill/{skill_id}','StudentController@addSkillToUser');
 	Route::get('/activate_code/{code_id}','StudentController@addCodeToUser');

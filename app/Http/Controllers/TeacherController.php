@@ -52,7 +52,7 @@ class TeacherController extends Controller
 				$data['status']='Използването на '.$skill_info->name.' се изпълни успешно';	
 				$data['success']=1;
 				if($data){
-					$message = $skill_info->name." беше използван от ".Auth::user()->name;
+					$message = $skill_info->name." беше използван от ".Auth::user()->Name;
 					$msg = new Message;
 
         			$msg->user_id = $studentId;

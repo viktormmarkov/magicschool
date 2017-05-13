@@ -35,6 +35,9 @@ class User extends Model
     public function skills() {
         return $this->belongsToMany('App\Models\Skill','users_skills','user_id','skill_id');
     }
+    public function questions() {
+        return $this->belongsToMany('App\Models\Question','send_question_to_user','user_id','question_id');
+    }
     public function characterName() {
         $producer = Character::where('id',$this->attributes['Character_type'])->first();
         return $producer['Name'];
