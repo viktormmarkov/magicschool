@@ -39,7 +39,7 @@ function Get_users() {
             <td>{{$student->characterName()}}<br /> <span class="span_level">Ниво : <span id="level-{{$student->id}}">{{$student->level}}</span></span>
             </td>
             <td class="td">
-            @foreach($student->skills as $skill)
+            @foreach($student->activeskills as $skill)
                 <div onmouseover="showDescription('{{$skill->name}}','{{$skill->description}}','{{$skill->ap}}')" onmouseout="removeDescription()" class="skill">
                     <img skillid="{{$skill->id}}" class="skillicon" src="{{$skill->src}}" onclick="onSkillClick('{{$student->id}}','{{$skill->id}}','{{$skill->name}}')"/>
                 </div>

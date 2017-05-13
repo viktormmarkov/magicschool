@@ -21,7 +21,7 @@
             </p>
 
         </div>
-        <div id="carousel" style="height: 600px">
+        <div id="carousel" class="hidden-xs hidden-sm" style="height: 600px">
             <div class="character-card"> 
             <div class="hero-card-header">Магьосник</div>
 
@@ -42,6 +42,33 @@
             <div class="character-card">
             <div class="hero-card-header">Стрелец</div>
             <img src="{{url('/img/characters/ranger-small.jpg')}}">
+            <div class="hero-description">
+            <button class="btn btn-primary block full-width" onclick="Send_form('3')">Потвърди</button>
+            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+            </div>
+            </div>
+        </div>
+        <div class="hidden-md hidden-lg" style="height: 600px">
+            <div class=""> 
+            <div class="hero-card-header">Магьосник</div>
+
+            <img src="{{url('/img/characters/spellcaster-small.jpg')}}" class="full-width">
+            <div class="hero-description">
+             <button class="btn btn-primary block full-width" onclick="Send_form('2')">Потвърди</button>
+            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+            </div>
+            </div>
+            <div class="">
+            <div class="hero-card-header">Боец</div>
+            <img src="{{url('/img/characters/warrior-small.jpg')}}" class="full-width">
+            <div class="hero-description">
+            <button class="btn btn-primary block full-width" onclick="Send_form('2')">Потвърди</button>
+            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+            </div>
+            </div>
+            <div class="">
+            <div class="hero-card-header">Стрелец</div>
+            <img src="{{url('/img/characters/ranger-small.jpg')}}" class="full-width">
             <div class="hero-description">
             <button class="btn btn-primary block full-width" onclick="Send_form('3')">Потвърди</button>
             Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
