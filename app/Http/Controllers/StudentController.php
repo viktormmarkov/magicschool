@@ -57,7 +57,8 @@ class StudentController extends Controller
 
     public function setType(Request $request) {
     	$user = Auth::user();
-    	$user->Character_type = $request->input('type');
+        $user->Character_type = $request->input('type');
+        $user->level =1;
     	$user->save();
             return view('student/index');
 

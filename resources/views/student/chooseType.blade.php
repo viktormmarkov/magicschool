@@ -27,8 +27,8 @@
 
             <img src="{{url('/img/characters/spellcaster-small.jpg')}}">
             <div class="hero-description">
-             <button class="btn btn-primary block full-width" onclick="Send_form('2')">Потвърди</button>
-            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+             <button class="btn btn-primary block full-width" onclick="Send_form('1')">Потвърди</button>
+            Силата на магьосниците е в писмените изпитвания. Имат умения, които определено улесняват живота.
             </div>
             </div>
             <div class="character-card">
@@ -36,7 +36,7 @@
             <img src="{{url('/img/characters/warrior-small.jpg')}}">
             <div class="hero-description">
             <button class="btn btn-primary block full-width" onclick="Send_form('2')">Потвърди</button>
-            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+            Боецът е несломим, когато стане дума за съревнование очи в очи. 
             </div>
             </div>
             <div class="character-card">
@@ -44,7 +44,7 @@
             <img src="{{url('/img/characters/ranger-small.jpg')}}">
             <div class="hero-description">
             <button class="btn btn-primary block full-width" onclick="Send_form('3')">Потвърди</button>
-            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+            Лукаво се сдобива с данни от другите герои и ги използва в своя полза.
             </div>
             </div>
         </div>
@@ -54,8 +54,8 @@
 
             <img src="{{url('/img/characters/spellcaster-small.jpg')}}" class="full-width">
             <div class="hero-description">
-             <button class="btn btn-primary block full-width" onclick="Send_form('2')">Потвърди</button>
-            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+             <button class="btn btn-primary block full-width" onclick="Send_form('1')">Потвърди</button>
+             Силата на магьосниците е в писмените изпитвания. Имат умения, които определено улесняват живота.
             </div>
             </div>
             <div class="">
@@ -63,7 +63,7 @@
             <img src="{{url('/img/characters/warrior-small.jpg')}}" class="full-width">
             <div class="hero-description">
             <button class="btn btn-primary block full-width" onclick="Send_form('2')">Потвърди</button>
-            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+             Боецът е несломим, когато стане дума за съревнование очи в очи.
             </div>
             </div>
             <div class="">
@@ -71,7 +71,7 @@
             <img src="{{url('/img/characters/ranger-small.jpg')}}" class="full-width">
             <div class="hero-description">
             <button class="btn btn-primary block full-width" onclick="Send_form('3')">Потвърди</button>
-            Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му.
+            Лукаво се сдобива с данни от другите герои и ги използва в своя полза.
             </div>
             </div>
         </div>
