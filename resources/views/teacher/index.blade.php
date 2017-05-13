@@ -36,7 +36,7 @@ function Get_users() {
         @foreach ($students as $student)
         <tr>
             <td>{{$student->Name}}</td>
-            <td>{{$student->characterName()}}<br /> <span class="span_level">Ниво : {{$student->level}}</span>
+            <td>{{$student->characterName()}}<br /> <span class="span_level">Ниво : <span id="level-{{$student->id}}">{{$student->level}}</span></span>
             </td>
             <td class="td">
             @foreach($student->skills as $skill)
@@ -47,7 +47,7 @@ function Get_users() {
             </td>
             <td >
                 <div id="{{$student->id}}">
-                    {{$student->ap}} ap
+                    <span id="ap-{{$student->id}}">{{$student->ap}}</span> ap
                     <button class="btn btn-sm btn-default" onclick="showModal({{$student->id}})">Добави</button>
 
                 </div>
@@ -113,14 +113,20 @@ function Get_users() {
         var object = {
             student_id: $('#student_id').val(),
             ap: $('#ap').val(),
+            _token: '{{csrf_token()}}',
             xp: $('#xp').val()
         };
 
         $.post("{{url('/add_point/')}}",
             object,
             function(data){
+                data = JSON.parse(data);
+                student_id =  $('#student_id').val();
+                $('#level-'+student_id).html(data.level);
+                $('#ap-'+student_id).html(data.ap);
                 console.log(data);
                 $("#points-modal").dialog("close");
+
             }); 
     }
     function onSkillClick(uid,sid,name){

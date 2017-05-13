@@ -67,7 +67,7 @@ class IndexController extends Controller
     public function userLogin(Request $request){
         if (Auth::attempt(array('username'=> $request->input('username'), 'password'=> $request->input('password')))) {
          
-            return Redirect::to('/student');
+            return Redirect::to('/');
         } else {
             return Redirect::back()->with('errors',array('Невалидни данни ! Опитайте отново'));
         }

@@ -102,9 +102,23 @@ class TeacherController extends Controller
                 $user->xp-=$next_level_xp;
                 $data['result']='Поздравления вдигнахте ниво. Имате '.$user->sp.' точки за умения';
                 $next_level_xp=(100*$user->level)+(50*($user->level-1));
+
+                $message = $data['result'];
+                
+				$msg = new Message;
+
+        		$msg->user_id = $user->id;
+        		$msg->teacher_id = Auth::user()->id;
+        		$msg->text = $message;
+        		$msg->save();
             }
             
-            $user->save(); 
+            $user->save();
+
+            $data['level'] = $user->level;
+            $data['ap'] = $user->ap;
+
+            echo json_encode($data); 
     }
  
 }
