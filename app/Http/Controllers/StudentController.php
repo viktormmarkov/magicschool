@@ -167,6 +167,14 @@ class StudentController extends Controller
                 Auth::user()->xp-=$next_level_xp;
                 $data['result']='Поздравления вдигнахте ниво. Имате '.Auth::user()->sp.' точки за умения';
                 $next_level_xp=(100*Auth::user()->level)+(50*(Auth::user()->level-1));
+                $message = $data['result'];
+
+                $msg = new Message;
+
+                $msg->user_id = Auth::user()->id;
+                $msg->teacher_id = Auth::user()->id;
+                $msg->text = $message;
+                $msg->save();
             }
             
             Auth::user()->save();          
@@ -216,6 +224,15 @@ class StudentController extends Controller
                 Auth::user()->xp-=$next_level_xp;
                 $data['result']='Поздравления вдигнахте ниво. Имате '.Auth::user()->sp.' точки за умения';
                 $next_level_xp=(100*Auth::user()->level)+(50*(Auth::user()->level-1));
+
+                 $message = $data['result'];
+
+                $msg = new Message;
+
+                $msg->user_id = Auth::user()->id;
+                $msg->teacher_id = Auth::user()->id;
+                $msg->text = $message;
+                $msg->save();
             }
             Auth::user()->save();
 
